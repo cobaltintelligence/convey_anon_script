@@ -34,4 +34,4 @@ Done
 Yuan Wang, Graceland Research
 
 ## License
-Copyright Cobalt Intelligence. All rights reserved.
+Copyright Cobalt Intelligence 2018. All rights reserved.
