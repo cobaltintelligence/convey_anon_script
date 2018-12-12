@@ -12,17 +12,28 @@ def main(argv):
     path = argv[1]
 
     lookup = dict()
+    reverse_lookup = dict()
 
     print("\nRenaming:")
     for filename in listdir(path):
         
         filename_components = filename.split('_')
 
+        # extract name component
+        name = str(filename_components[1]).lower()
+        
         # replace name with 6 digit integer
-        filename_components[1] = "_" + str(random.randint(1000000000,9999999999)) + "_"
+        new_name = "_" + str(random.randint(1000000000,9999999999)) + "_"
+
+        # check if already hashed
+        if name in reverse_lookup:
+            new_name = reverse_lookup[name]
+            
+        filename_components[1] = new_name
         new_filename = "".join(filename_components)
         print("\t%s \t --->  %s" % (filename, new_filename))
         lookup[join(path, new_filename)] = join(path, filename)
+        reverse_lookup[name] = new_name
 
         # rename file
         os.rename(join(path, filename), join(path, new_filename))
